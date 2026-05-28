@@ -3,6 +3,28 @@
  * темы, частицы, счётчики, модалка, бургер, параллакс
  */
 
+// ========== МИГРАЦИЯ ВЕРСИИ + СБРОС SW ==========
+(function() {
+    const CURRENT_VERSION = 2;
+    const savedVersion = parseInt(localStorage.getItem('pfVersion'), 10);
+    if (!savedVersion || savedVersion < CURRENT_VERSION) {
+        localStorage.clear();
+        localStorage.setItem('pfVersion', String(CURRENT_VERSION));
+    }
+})();
+
+// Убиваем старые сервис-воркеры
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+    });
+}
+if ('caches' in window) {
+    caches.keys().then(keys => {
+        keys.forEach(key => caches.delete(key));
+    });
+}
+
 // ========== ТРОТТЛ ==========
 function throttle(fn, limit) {
     let last = 0;
