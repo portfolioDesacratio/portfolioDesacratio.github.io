@@ -112,30 +112,55 @@ body[data-theme="light"] {
 /* Десктоп (>= 1024px) */
 @media (min-width: 1024px) {
     body {
-        background-image: url('assets/images/anime-bg-dark-desktop.webp');
+        /* JPG fallback для браузеров без WebP */
+        background-image: url('assets/images/anime-bg-dark-desktop.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-dark-desktop.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-dark-desktop.jpg') type('image/jpeg') 1x
+        );
     }
     body[data-theme="light"] {
-        background-image: url('assets/images/anime-bg-light-desktop.webp');
+        background-image: url('assets/images/anime-bg-light-desktop.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-light-desktop.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-light-desktop.jpg') type('image/jpeg') 1x
+        );
     }
 }
 
 /* Планшет (768px — 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     body {
-        background-image: url('assets/images/anime-bg-dark-tablet.webp');
+        background-image: url('assets/images/anime-bg-dark-tablet.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-dark-tablet.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-dark-tablet.jpg') type('image/jpeg') 1x
+        );
     }
     body[data-theme="light"] {
-        background-image: url('assets/images/anime-bg-light-tablet.webp');
+        background-image: url('assets/images/anime-bg-light-tablet.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-light-tablet.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-light-tablet.jpg') type('image/jpeg') 1x
+        );
     }
 }
 
 /* Телефон (< 768px) */
 @media (max-width: 767px) {
     body {
-        background-image: url('assets/images/anime-bg-dark-mobile.webp');
+        background-image: url('assets/images/anime-bg-dark-mobile.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-dark-mobile.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-dark-mobile.jpg') type('image/jpeg') 1x
+        );
     }
     body[data-theme="light"] {
-        background-image: url('assets/images/anime-bg-light-mobile.webp');
+        background-image: url('assets/images/anime-bg-light-mobile.jpg');
+        background-image: image-set(
+            url('assets/images/anime-bg-light-mobile.webp') type('image/webp') 1x,
+            url('assets/images/anime-bg-light-mobile.jpg') type('image/jpeg') 1x
+        );
     }
 }
 
