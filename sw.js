@@ -1,5 +1,5 @@
-// Desacratio Portfolio — Service Worker (тихий режим)
-const CACHE = 'desacratio-portfolio-v2';
+// Desacratio Portfolio — Service Worker (сеть->кэш, без белого экрана)
+const CACHE = 'desacratio-portfolio-v3';
 
 self.addEventListener('install', () => {
     self.skipWaiting();
@@ -21,26 +21,7 @@ self.addEventListener('fetch', (event) => {
     const url = new URL(request.url);
     if (url.origin !== location.origin) return;
 
-    if (
-        request.destination === 'style' ||
-        request.destination === 'script' ||
-        request.destination === 'font' ||
-        request.destination === 'image' ||
-        url.pathname === '/' ||
-        url.pathname === '/index.html'
-    ) {
-        event.respondWith(
-            caches.match(request).then((cached) => {
-                return cached || fetch(request).then((response) => {
-                    const clone = response.clone();
-                    caches.open(CACHE).then((cache) => cache.put(request, clone));
-                    return response;
-                });
-            })
-        );
-        return;
-    }
-
+    // Для CSS, JS, шрифтов, картинок и HTML — сначала сеть, потом кэш
     event.respondWith(
         fetch(request)
             .then((response) => {
