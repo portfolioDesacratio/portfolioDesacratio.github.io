@@ -304,3 +304,22 @@ if (modalOverlay) {
 console.log('%c Desacratio ', 'background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 18px; padding: 10px 20px; border-radius: 8px; font-weight: bold;');
 console.log('%c Пишу коды, для вас ', 'color: #667eea; font-size: 13px;');
 console.log('%c tg: @desacratio ', 'color: #764ba2; font-size: 13px;');
+
+// ========== КНОПКА НАВЕРХ ==========
+(function() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    window.addEventListener('scroll', throttle(() => {
+        if (window.pageYOffset > 400) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, 100));
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();

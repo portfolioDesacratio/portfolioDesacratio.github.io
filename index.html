@@ -366,10 +366,16 @@
         </div>
     </div>
 
+    <!-- Кнопка наверх -->
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
     <script src="script.js"></script>
     <script>
+    window.addEventListener('beforeinstallprompt', function(e) { e.preventDefault(); });
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
+        navigator.serviceWorker.register('/sw.js').catch(function(){});
     }
     </script>
 </body>
